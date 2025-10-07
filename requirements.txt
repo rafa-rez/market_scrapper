@@ -1,0 +1,11 @@
+# requirements.txt
+openai
+pandas
+requests
+beautifulsoup4
+pytrends
+python-dotenv
+pymupdf
+google-generativeai
+anthropic
+huggingface_hub

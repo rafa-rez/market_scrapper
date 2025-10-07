@@ -38,7 +38,7 @@ O diferencial está na **modularidade**, você pode conectar qualquer provedor d
 
 - Python 3.8 ou superior  
 - Git instalado  
-- Uma chave de API de um dos [provedores suportados](#-principais-funcionalidades)
+- Uma chave de API de um dos provedores suportados
 
 ---
 
@@ -47,8 +47,8 @@ O diferencial está na **modularidade**, você pode conectar qualquer provedor d
 Clone o repositório:
 
 ```bash
-git clone https://github.com/seu-usuario/seu-repositorio.git
-cd seu-repositorio
+git clone https://github.com/rafa-rez/market_scrapper.git
+cd market_scrapper
 ```
 
 Instale as dependências principais:
@@ -105,7 +105,7 @@ Abra o `config.py` e ajuste os parâmetros principais:
 
 #### c. Adicione seus arquivos PDF
 
-Crie a pasta definida em `PDF_FOLDER` (ex: `reports/`) e coloque seus relatórios `.pdf` nela.
+Adicione na pasta definida em `PDF_FOLDER` (padrão: `reports/`).
 
 ---
 
@@ -125,12 +125,11 @@ O script executa todas as etapas — coleta, processamento e análise — e gera
 
 ```
 .
-├── .env                    # Credenciais locais (não versionadas)
-├── .gitignore              # Arquivos ignorados pelo Git
+├── .env                    # Credenciais locais 
 ├── config.py               # Configuração principal do projeto
 ├── main.py                 # Ponto de entrada da aplicação
-├── README.md               # Este arquivo
-├── requirements.txt        # Dependências completas
+├── README.md               # Este mesmo arquivo
+├── requirements.txt        # Dependências completas ( !! todas as bilbiotecas dos provedores estão incluídas !! )
 └── src/                    # Código-fonte principal
     ├── __init__.py
     ├── ai_client.py        # Comunicação com diferentes APIs de IA
@@ -153,7 +152,6 @@ Se curtiu o projeto, sinta-se à vontade para **contribuir, testar ou sugerir no
 
 ---
 
-<br>
 <br>
 <p align="center">
    <em>“Talk is cheap. Show me the code.”</em><br>
