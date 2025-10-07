@@ -105,7 +105,7 @@ Abra o `config.py` e ajuste os parâmetros principais:
 
 #### c. Adicione seus arquivos PDF
 
-Adicione na pasta definida em `PDF_FOLDER` (padrão: `reports/`).
+Crie a pasta definida em `PDF_FOLDER` (ex: `reports/`) e coloque seus relatórios `.pdf` nela.
 
 ---
 

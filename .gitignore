@@ -4,6 +4,9 @@ venv/
 # Arquivo de variáveis de ambiente (contém segredos)
 .env
 
+# Pasta com dados de entrada do usuário (PDFs)
+reports/
+
 # Arquivos de cache e compilados do Python
 __pycache__/
 *.pyc
