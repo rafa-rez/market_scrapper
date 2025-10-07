@@ -1,49 +1,51 @@
 # config.py
+import os
 
 # --- Configurações de Análise ---
-
-# 1. Palavras-chave para a busca de dados.
-KEYWORDS = ["BYD", "Veículo elétrico", "Carro por assinatura"]
-
-# 2. Dicionário de sites para a raspagem de notícias.
-#    Formato: "Nome do Site": "url_base_do_site.com"
-NEWS_SITES = {
-     "Quatro Rodas": "quatrorodas.abril.com.br",
-    "Motor1": "motor1.com",
-    "WM1 / Webmotors": "wm1.webmotors.com.br",
-    "Autoesporte": "autoesporte.globo.com",
-    "G1 Carros": "g1.globo.com/carros",
-    "iCarros": "www.icarros.com.br"
-}
-# 3. Pasta onde os relatórios em PDF estão localizados.
+KEYWORDS = ["Inteligência Artificial", "Machine Learning", "Big Data"]
+NEWS_SITES = {"TecMundo": "tecmundo.com.br", "Canaltech": "canaltech.com.br"}
 PDF_FOLDER = "reports"
 
-# --- Configurações da OpenAI ---
+# --- Configurações da IA ---
 
-# 4. Instrução principal para a IA (define o "papel" dela).
-SYSTEM_PROMPT = "Analise os dados a seguir e identifique tendências de consumo emergentes no mercado automotivo brasileiro, usando listas e bullet points:"
+# Escolha o provedor de IA. Opções: "azure", "openai", "gemini", "claude", "huggingface"
+AI_PROVIDER = "azure" 
 
-# 5. O prompt do usuário que será preenchido com os dados coletados.
-#    Use as chaves {pdf_summary}, {trends_summary} e {news_summary} que serão substituídas pelos dados.
+# Modelos e credenciais para cada provedor (puxados do .env)
+AI_CONFIG = {
+    "azure": {
+        "api_key": os.getenv("AZURE_OPENAI_API_KEY"),
+        "endpoint": os.getenv("AZURE_OPENAI_ENDPOINT"),
+        "deployment": os.getenv("AZURE_OPENAI_DEPLOYMENT")
+    },
+    "openai": {
+        "api_key": os.getenv("OPENAI_API_KEY"),
+        "model": "gpt-4o"  # Ou "gpt-3.5-turbo"
+    },
+    "gemini": {
+        "api_key": os.getenv("GEMINI_API_KEY"),
+        "model": "gemini-1.5-flash"
+    },
+    "claude": {
+        "api_key": os.getenv("ANTHROPIC_API_KEY"),
+        "model": "claude-3-haiku-20240307" # Modelo mais rápido e econômico
+    },
+    "huggingface": {
+        "api_key": os.getenv("HUGGINGFACE_API_KEY"),
+        "model": "mistralai/Mistral-7B-Instruct-v0.2" # Exemplo de modelo
+    }
+}
+
+# --- Configurações de Prompt ---
+SYSTEM_PROMPT = "Você é um analista de mercado e tecnologia, especialista em identificar tendências emergentes e padrões de dados."
 USER_PROMPT_TEMPLATE = """
-Com base nos dados coletados a seguir, analise e identifique as principais tendências, desafios e oportunidades emergentes no setor automobílisto.
-
-Estruture sua análise em bullet points, destacando os pontos mais importantes.
+Com base nos dados coletados a seguir, analise e identifique as principais tendências, desafios e oportunidades emergentes.
 
 **Contexto Coletado:**
-
-**1. Resumo de Relatórios (PDFs):**
-{pdf_summary}
-
-**2. Interesse de Busca (Google Trends):**
-{trends_summary}
-
-**3. Manchetes Recentes (Notícias):**
-{news_summary}
+1. Resumo de Relatórios (PDFs): {pdf_summary}
+2. Interesse de Busca (Google Trends): {trends_summary}
+3. Manchetes Recentes (Notícias): {news_summary}
 """
 
 # --- Configurações de Saída ---
-
-# 6. Prefixo para o nome do arquivo de resultado.
-#    O resultado será salvo como: "analise_output_20251027_1530.txt"
-OUTPUT_FILENAME_PREFIX = "analise_output"
+OUTPUT_FILENAME_PREFIX = "analise_de_tendencias"

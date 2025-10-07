@@ -7,7 +7,7 @@ import time
 import config
 from src.pdf_extractor import extract_all_pdfs_text
 from src.news_scraper import get_news_data
-from src.openai_client import get_ai_analysis
+from src.ai_client import get_ai_analysis 
 
 # Bibliotecas de terceiros
 from pytrends.request import TrendReq
