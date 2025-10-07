@@ -1,4 +1,4 @@
-# Market Trend Analyzer AI
+# Market Scrapper
 
 Este projeto é uma ferramenta automatizada para coleta e análise de tendências de mercado usando raspagem de dados, APIs e um modelo de linguagem da OpenAI. A ferramenta coleta informações de PDFs locais, notícias da web e dados do Google Trends para gerar um relatório analítico sobre um determinado setor.
 
@@ -24,8 +24,8 @@ O projeto foi projetado para ser facilmente configurável para qualquer área de
 Clone o repositório e instale as dependências:
 
 ```bash
-git clone [https://github.com/seu-usuario/seu-repositorio.git](https://github.com/seu-usuario/seu-repositorio.git)
-cd seu-repositorio
+git clone [https://github.com/rafa-rez/market_scrapper.git]
+cd market_scrapper
 pip install -r requirements.txt
 ```
 
