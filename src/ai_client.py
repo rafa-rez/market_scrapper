@@ -66,7 +66,7 @@ def _get_claude_analysis(system_prompt, user_prompt):
     client = anthropic.Anthropic(api_key=creds["api_key"])
     response = client.messages.create(
         model=creds["model"],
-        max_tokens=2048,
+        max_tokens=4096, # Aumentado para acomodar prompts maiores
         system=system_prompt,
         messages=[
             {"role": "user", "content": user_prompt}
@@ -82,18 +82,11 @@ def _get_huggingface_analysis(system_prompt, user_prompt):
         raise ValueError("API Key da Hugging Face não configurada no .env")
 
     client = InferenceClient(token=creds["api_key"])
-    # Formatação de prompt comum para modelos instrucionais
     prompt = f"<s>[INST] {system_prompt}\n\n{user_prompt} [/INST]"
     
-    response = client.post(
-        json={
-            "inputs": prompt,
-            "parameters": {"max_new_tokens": 1024, "temperature": 0.7}
-        },
-        model=creds["model"]
-    )
-    # A resposta da API da Hugging Face é um bytestring, precisa ser decodificada
-    return response.decode("utf-8").strip()
+    # HuggingFace Inference API tem limites de tempo/payload, pode falhar com prompts muito grandes
+    response = client.text_generation(prompt, model=creds["model"], max_new_tokens=2048, temperature=0.7)
+    return response.strip()
 
 
 # --- Roteador Principal ---

@@ -38,13 +38,21 @@ AI_CONFIG = {
 
 # --- Configurações de Prompt ---
 SYSTEM_PROMPT = "Você é um analista de mercado e tecnologia, especialista em identificar tendências emergentes e padrões de dados."
+
+# ATUALIZADO: 'trends_summary' foi substituído por 'gn_summary' e os títulos foram ajustados
 USER_PROMPT_TEMPLATE = """
 Com base nos dados coletados a seguir, analise e identifique as principais tendências, desafios e oportunidades emergentes.
 
 **Contexto Coletado:**
-1. Resumo de Relatórios (PDFs): {pdf_summary}
-2. Interesse de Busca (Google Trends): {trends_summary}
-3. Manchetes Recentes (Notícias): {news_summary}
+
+1. CONTEÚDO COMPLETO DE RELATÓRIOS (PDFs):
+{pdf_summary}
+
+2. MANCHETES RECENTES DO GOOGLE NOTÍCIAS (INDICADOR DE TENDÊNCIA):
+{gn_summary}
+
+3. ARTIGOS COMPLETOS DE SITES ESPECIALIZADOS:
+{news_summary}
 """
 
 # --- Configurações de Saída ---

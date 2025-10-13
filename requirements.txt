@@ -3,7 +3,7 @@ openai
 pandas
 requests
 beautifulsoup4
-pytrends
+newspaper3k
 python-dotenv
 pymupdf
 google-generativeai

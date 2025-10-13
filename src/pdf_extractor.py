@@ -1,4 +1,4 @@
-# pdf_extractor.py
+# src/pdf_extractor.py
 import fitz  # PyMuPDF
 import os
 
