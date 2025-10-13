@@ -1,33 +1,36 @@
 # Market Scrapper
 
-Este projeto nasceu da ideia de **automatizar a coleta e a análise de inteligência de mercado**, unindo raspagem de dados, leitura de relatórios em PDF e modelos de linguagem avançados em uma única ferramenta.  
 
-O objetivo é simples: transformar dados brutos em **insights**, ajudando a identificar tendências, movimentos do mercado e padrões de interesse em tempo real.
+Bombardeados de nóticias, ficamos cegos para a verdade.
 
-O diferencial está na **modularidade**, você pode conectar qualquer provedor de IA (OpenAI, Azure, Gemini, Claude ou Hugging Face) e personalizar fontes e prompts com facilidade, tudo a partir de um único arquivo de configuração.
+Este projeto nasceu da ideia de **automatizar a coleta e a análise de inteligência de mercado**, unindo raspagem de dados profundos, leitura de relatórios em PDF e modelos de linguagem avançados em uma única ferramenta. Tudo na tentantiva de ter insights aprimorados do mercado e me preparar para os movimentos da economia.
+
+O objetivo é simples: transformar dados brutos e não estruturados em **insights acionáveis**, ajudando a identificar tendências, movimentos da concorrência e padrões de mercado em tempo real.
+
+O diferencial está na **modularidade**: você pode conectar qualquer provedor de IA (OpenAI, Azure, Gemini, Claude ou Hugging Face) e personalizar fontes e prompts com facilidade, tudo a partir de um único arquivo de configuração.
 
 ---
 
 ## Principais Funcionalidades
 
-- **Compatível com vários provedores de IA:**  
+- **Compatível com Múltiplos Provedores de IA:**
   Plugue o modelo de linguagem da sua preferência. Suporte nativo para:
-  - Azure OpenAI  
-  - OpenAI (API padrão)  
-  - Google Gemini  
-  - Anthropic Claude  
-  - Hugging Face  
+  - Azure OpenAI
+  - OpenAI (API padrão)
+  - Google Gemini
+  - Anthropic Claude
+  - Hugging Face
 
-- **Extração automática de PDFs:**  
-  Lê e processa relatórios em PDF de forma automática, prontos para análise.
+- **Análise Profunda de PDFs:**
+  Extrai o **conteúdo completo** de relatórios em formato PDF, permitindo que a IA analise os documentos na íntegra, sem truncamento.
 
-- **Raspagem de notícias da web:**  
-  Captura manchetes recentes de sites definidos e filtradas por palavras-chave.
+- **Raspagem de Artigos Completos:**
+  Não se limita a manchetes; o sistema acessa os links de notícias e extrai o **texto integral** dos artigos, fornecendo um contexto muito mais rico para a análise.
 
-- **Análise de tendências de busca:**  
-  Integra-se ao Google Trends para medir o interesse público em diferentes temas ao longo do tempo.
+- **Monitoramento de Tendências via Notícias:**
+  Utiliza o Google Notícias para capturar as manchetes mais recentes sobre as palavras-chave, servindo como um termômetro em tempo real do interesse e da cobertura da mídia sobre os temas.
 
-- **Altamente configurável:**  
+- **Altamente Configurável:**
   Palavras-chave, sites, prompts e provedor de IA podem ser ajustados facilmente no `config.py`, sem tocar na lógica principal.
 
 ---
@@ -36,8 +39,8 @@ O diferencial está na **modularidade**, você pode conectar qualquer provedor d
 
 ### 1. Pré-requisitos
 
-- Python 3.8 ou superior  
-- Git instalado  
+- Python 3.8 ou superior
+- Git instalado
 - Uma chave de API de um dos provedores suportados
 
 ---
@@ -47,14 +50,14 @@ O diferencial está na **modularidade**, você pode conectar qualquer provedor d
 Clone o repositório:
 
 ```bash
-git clone https://github.com/rafa-rez/market_scrapper.git
+git clone [https://github.com/rafa-rez/market_scrapper.git](https://github.com/rafa-rez/market_scrapper.git)
 cd market_scrapper
 ```
 
 Instale as dependências principais:
 
 ```bash
-pip install pandas requests beautifulsoup4 pytrends python-dotenv pymupdf
+pip install requirements.txt
 ```
 
 E depois, instale **somente** a biblioteca do provedor de IA que for usar:
@@ -64,7 +67,7 @@ E depois, instale **somente** a biblioteca do provedor de IA que for usar:
 | Azure / OpenAI   | `pip install openai`              |
 | Google Gemini    | `pip install google-generativeai` |
 | Anthropic Claude | `pip install anthropic`           |
-| Hugging Face     | `pip install huggingface_hub`     |
+| Hugging Face     | `pip install huggingface-hub`     |
 
 ---
 
@@ -97,11 +100,11 @@ HUGGINGFACE_API_KEY="hf_..."
 
 Abra o `config.py` e ajuste os parâmetros principais:
 
-- `AI_PROVIDER`: provedor de IA em uso (`"gemini"`, `"openai"`, etc)  
-- `KEYWORDS`: lista de palavras-chave a serem analisadas  
-- `NEWS_SITES`: sites de notícias a serem monitorados  
-- `PDF_FOLDER`: pasta onde ficarão os arquivos PDF  
-- `SYSTEM_PROMPT` e `USER_PROMPT_TEMPLATE`: instruções e contexto para o modelo de IA  
+- `AI_PROVIDER`: provedor de IA em uso (`"gemini"`, `"openai"`, etc.)
+- `KEYWORDS`: lista de palavras-chave a serem analisadas
+- `NEWS_SITES`: sites de notícias para extração de artigos completos
+- `PDF_FOLDER`: pasta onde ficarão os arquivos PDF para análise
+- `SYSTEM_PROMPT` e `USER_PROMPT_TEMPLATE`: instruções e o template de contexto para o modelo de IA.
 
 #### c. Adicione seus arquivos PDF
 
@@ -125,35 +128,33 @@ O script executa todas as etapas — coleta, processamento e análise — e gera
 
 ```
 .
-├── .env                    # Credenciais locais 
-├── config.py               # Configuração principal do projeto
-├── main.py                 # Ponto de entrada da aplicação
-├── README.md               # Este mesmo arquivo
-├── requirements.txt        # Dependências completas ( !! todas as bilbiotecas dos provedores estão incluídas !! )
-└── src/                    # Código-fonte principal
+├── .env                     # Credenciais locais (não versionado)
+├── config.py                # Configuração principal do projeto
+├── main.py                  # Ponto de entrada da aplicação
+├── README.md                # Este mesmo arquivo
+└── src/                     # Código-fonte principal
     ├── __init__.py
-    ├── ai_client.py        # Comunicação com diferentes APIs de IA
-    ├── news_scraper.py     # Coleta de notícias da web
-    └── pdf_extractor.py    # Extração de texto de PDFs
+    ├── ai_client.py           # Comunicação com diferentes APIs de IA
+    ├── google_news_scraper.py # Captura de tendências via manchetes do Google Notícias
+    ├── news_scraper.py        # Coleta do conteúdo completo de artigos
+    └── pdf_extractor.py       # Extração de texto de PDFs
 ```
 
 ---
 
-## 🧠 Futuras melhorias
+## Futuras Melhorias
 
-- Dashboard interativo para visualização de insights  
-- Suporte a bancos de dados (SQLite / Postgres)  
-- Relatórios automáticos em Markdown ou PDF  
-- Geração de resumos executivos  
+- **Cache Inteligente:** Implementar um sistema de cache para evitar reprocessar PDFs e artigos já analisados.
+- **Execução Assíncrona:** Utilizar `asyncio` para acelerar drasticamente a etapa de scraping de notícias.
+- **CLI Interativa:** Adicionar argumentos de linha de comando (`argparse`) para passar palavras-chave e configurações sem editar o código.
+- **Estratégia "Summarize-then-Synthesize":** Reduzir custos e aumentar a precisão ao primeiro resumir cada documento individualmente antes da análise final.
+- **Relatórios Estruturados:** Gerar saídas em Markdown ou JSON em vez de `.txt`.
 
-
-
-Se curtiu o projeto, sinta-se à vontade para **contribuir, testar ou sugerir novas ideias**.  
+Se curtiu o projeto, sinta-se à vontade para **contribuir, testar ou sugerir novas ideias**.
 
 ---
 
-<br>
 <p align="center">
-   <em>“Talk is cheap. Show me the code.”</em><br>
+    <em>“Talk is cheap. Show me the code.”</em><br>
   — <strong>Linus Torvalds</strong>
 </p>

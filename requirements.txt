@@ -1,11 +1,7 @@
 # requirements.txt
-openai
 pandas
 requests
 beautifulsoup4
 newspaper3k
 python-dotenv
 pymupdf
-google-generativeai
-anthropic
-huggingface_hub
